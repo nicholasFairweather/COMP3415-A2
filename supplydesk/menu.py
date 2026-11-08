@@ -42,45 +42,79 @@ def read_request(service):
     return customer, items, fulfillment
 
 
+def confirmed(prompt):
+    return input(prompt + " [y/N]: ").strip().lower() == "y"
+
+
+def view_catalog(service):
+    show_catalog(service.catalog())
+
+
+def get_quote(service):
+    show_order(service.quote(*read_request(service)))
+    print("Quote only: no stock reserved and no order created.")
+
+
+def place_order(service):
+    request = read_request(service)
+    show_order(service.quote(*request))
+    if confirmed("Place this order?"):
+        show_order(service.place_order(*request))
+    else:
+        print("Order not placed.")
+
+
+def view_history(service):
+    orders = service.list_orders()
+    if not orders:
+        print("No orders yet.")
+    for order in orders:
+        show_order(order)
+
+
+def find_order(service):
+    show_order(service.get_order(input("Order ID: ").strip()))
+
+
+def cancel_order(service):
+    order_id = input("Order ID to cancel: ").strip()
+    if confirmed("Cancel this order?"):
+        show_order(service.cancel_order(order_id))
+    else:
+        print("Cancellation abandoned.")
+
+
+# Menu number -> (label, handler). The printed menu and the dispatch both come from here.
+MENU_OPTIONS = {
+    "1": ("View products and stock", view_catalog),
+    "2": ("Get a quote", get_quote),
+    "3": ("Place an order", place_order),
+    "4": ("View order history", view_history),
+    "5": ("Find an order", find_order),
+    "6": ("Cancel an order", cancel_order),
+}
+EXIT_OPTION = "0"
+
+
+def menu_text():
+    lines = [f"{key}. {label}" for key, (label, _) in MENU_OPTIONS.items()]
+    return "\n" + "\n".join(lines) + f"\n{EXIT_OPTION}. Exit"
+
+
 def run_menu(service):
     print("Campus Supply Desk | All prices are CAD. Orders are saved automatically.")
     while True:
         try:
-            print("\n1. View products and stock\n2. Get a quote\n3. Place an order"
-                  "\n4. View order history\n5. Find an order\n6. Cancel an order\n0. Exit")
+            print(menu_text())
             choice = input("Choose an option: ").strip()
-            if choice == "0":
+            if choice == EXIT_OPTION:
                 print("Goodbye.")
                 return 0
-            if choice == "1":
-                show_catalog(service.catalog())
-            elif choice in ("2", "3"):
-                request = read_request(service)
-                if choice == "2":
-                    show_order(service.quote(*request))
-                    print("Quote only: no stock reserved and no order created.")
-                else:
-                    show_order(service.quote(*request))
-                    if input("Place this order? [y/N]: ").strip().lower() == "y":
-                        show_order(service.place_order(*request))
-                    else:
-                        print("Order not placed.")
-            elif choice == "4":
-                orders = service.list_orders()
-                if not orders:
-                    print("No orders yet.")
-                for order in orders:
-                    show_order(order)
-            elif choice == "5":
-                show_order(service.get_order(input("Order ID: ").strip()))
-            elif choice == "6":
-                order_id = input("Order ID to cancel: ").strip()
-                if input("Cancel this order? [y/N]: ").strip().lower() == "y":
-                    show_order(service.cancel_order(order_id))
-                else:
-                    print("Cancellation abandoned.")
+            if choice in MENU_OPTIONS:
+                _, handler = MENU_OPTIONS[choice]
+                handler(service)
             else:
-                print("Choose a number from 0 to 6.")
+                print(f"Choose a number from {EXIT_OPTION} to {len(MENU_OPTIONS)}.")
         except (EOFError, KeyboardInterrupt):
             print("\nGoodbye.")
             return 0
