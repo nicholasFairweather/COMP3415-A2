@@ -58,6 +58,7 @@ class OrderService:
     def _price_request(self, state, customer_type, items, fulfillment):
         _validate_options(customer_type, fulfillment, items)
         lines = [_price_line(state, item) for item in items]
+        _check_combined_stock(state, lines)
         subtotal = sum(line["line_total_cents"] for line in lines)
         discount = _discount_cents(customer_type, subtotal)
         delivery = _delivery_cents(fulfillment, subtotal - discount)
@@ -103,6 +104,16 @@ def _price_line(state, item):
         "quantity": quantity,
         "line_total_cents": product["unit_price_cents"] * quantity,
     }
+
+
+def _check_combined_stock(state, lines):
+    """A product on several lines must not exceed its stock in total."""
+    requested = {}
+    for line in lines:
+        requested[line["product_id"]] = requested.get(line["product_id"], 0) + line["quantity"]
+    for product_id, quantity in requested.items():
+        if quantity > _find_product(state, product_id)["stock"]:
+            raise ValueError("Not enough stock for " + product_id + ".")
 
 
 def _discount_cents(customer_type, subtotal):
