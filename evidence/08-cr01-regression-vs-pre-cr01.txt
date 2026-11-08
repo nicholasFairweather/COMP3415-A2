@@ -1,0 +1,1 @@
+SAME OUTPUT: 14 commands produced identical output and exit codes
