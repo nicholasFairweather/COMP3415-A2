@@ -81,7 +81,7 @@ Then:
 3. Enter `notebook` for the product ID.
 4. Enter `2` for the quantity.
 5. Press Enter without typing another product ID to finish adding items.
-6. Press Enter at the fulfillment prompt to use `pickup`.
+6. Press Enter at the fulfillment prompt to use `pickup` (or type `delivery` or `express`).
 
 With sufficient stock available, the quote should show a **$10.00 total**.
 
@@ -95,17 +95,31 @@ From the folder containing `README.md`, `supplydesk`, and `tests`, run:
 python -m unittest discover -s tests -v
 ```
 
-The supplied tests should finish with:
+The tests should finish with:
 
 ```text
-Ran 4 tests
+Ran 39 tests
 
 OK
 ```
 
-These four tests are a starting point. **Passing them does not mean every required behavior is correct.** You will add meaningful tests as part of the assignment.
+| File | What it covers |
+| --- | --- |
+| `tests/test_smoke.py` | The four original starter tests (unchanged). |
+| `tests/test_service.py` | Service rules grouped as normal, boundary, invalid, and preserved behaviour (from the Checkpoint A testing strategy). |
+| `tests/test_interfaces.py` | Individual commands (JSON output, exit status) and scripted interactive-menu sessions. |
+| `tests/test_cr01_express.py` | CR-01 express delivery, tagged with the acceptance requirement each test checks. |
 
-The supplied tests use temporary files and do not change your saved orders or stock.
+All tests use temporary files and do not change your saved orders or stock.
+
+Saved test runs for each stage of the work are in `evidence/` (baseline, after each refactoring, after the defect fixes, before and after CR-01).
+
+To confirm that a refactoring did not change visible behaviour, compare the current code with the original starter commit:
+
+```sh
+sh scripts/compare_with_original.sh                 # individual commands
+python scripts/compare_menu_with_original.py        # a scripted interactive-menu session
+```
 
 ## 4. Saved data and practice sessions
 
@@ -172,7 +186,16 @@ You can perform operations directly instead of using the menu. These commands ar
 python -m supplydesk catalog
 python -m supplydesk quote --customer regular --item notebook:2
 python -m supplydesk quote --customer student --fulfillment delivery --item hoodie:2
+python -m supplydesk quote --customer student --fulfillment express --item hoodie:2
 ```
+
+Fulfillment options:
+
+| Option | Charge |
+| --- | --- |
+| `pickup` (default) | Free |
+| `delivery` | $6.00, free when the subtotal after any discount is at least $100.00 |
+| `express` | $12.00, always charged |
 
 Use repeated `--item` options for multiple items:
 
