@@ -117,7 +117,7 @@ def _check_combined_stock(state, lines):
 
 
 def _discount_cents(customer_type, subtotal):
-    if customer_type == "student" and subtotal > STUDENT_DISCOUNT_THRESHOLD_CENTS:
+    if customer_type == "student" and subtotal >= STUDENT_DISCOUNT_THRESHOLD_CENTS:
         # Integer arithmetic: percent of subtotal, rounded half a cent upward.
         return (subtotal * STUDENT_DISCOUNT_PERCENT + 50) // 100
     return 0
