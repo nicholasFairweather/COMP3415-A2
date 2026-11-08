@@ -48,6 +48,8 @@ class OrderService:
     def cancel_order(self, order_id):
         state = self.store.load()
         order = _find_order(state, order_id)
+        if order["status"] == "cancelled":
+            return order  # already cancelled: do not restore stock a second time
         for line in order["items"]:
             _find_product(state, line["product_id"])["stock"] += line["quantity"]
         order["status"] = "cancelled"
