@@ -1,0 +1,208 @@
+test_command_help_mentions_express (test_cr01_express.ExpressInterfaceTests.test_command_help_mentions_express) ... FAIL
+test_cr_command_example_total_8400 (test_cr01_express.ExpressInterfaceTests.test_cr_command_example_total_8400) ... usage: python3 -m unittest quote [-h] [--customer {regular,student}]
+                                 [--fulfillment {pickup,delivery}] --item ITEM
+python3 -m unittest quote: error: argument --fulfillment: invalid choice: 'express' (choose from 'pickup', 'delivery')
+ERROR
+test_menu_prompt_offers_express_and_places_order (test_cr01_express.ExpressInterfaceTests.test_menu_prompt_offers_express_and_places_order) ... FAIL
+test_cr_example_regular_two_notebooks (test_cr01_express.ExpressTests.test_cr_example_regular_two_notebooks) ... ERROR
+test_cr_example_student_two_hoodies (test_cr01_express.ExpressTests.test_cr_example_student_two_hoodies) ... ERROR
+test_cr_example_three_hoodies_standard_vs_express (test_cr01_express.ExpressTests.test_cr_example_three_hoodies_standard_vs_express) ... ERROR
+test_discount_is_on_merchandise_not_express_fee (test_cr01_express.ExpressTests.test_discount_is_on_merchandise_not_express_fee) ... ERROR
+test_express_order_kept_when_retrieved_reopened_and_cancelled (test_cr01_express.ExpressTests.test_express_order_kept_when_retrieved_reopened_and_cancelled) ... ERROR
+test_other_fulfillment_values_still_invalid (test_cr01_express.ExpressTests.test_other_fulfillment_values_still_invalid) ... ok
+test_quote_command_prints_json_in_cents (test_interfaces.CliTests.test_quote_command_prints_json_in_cents) ... ok
+test_rejected_command_exits_with_status_2 (test_interfaces.CliTests.test_rejected_command_exits_with_status_2) ... ok
+test_blank_prompts_default_to_regular_and_pickup (test_interfaces.MenuTests.test_blank_prompts_default_to_regular_and_pickup) ... ok
+test_declining_placement_saves_nothing (test_interfaces.MenuTests.test_declining_placement_saves_nothing) ... ok
+test_history_find_and_cancel (test_interfaces.MenuTests.test_history_find_and_cancel) ... ok
+test_invalid_request_shows_error_and_returns_to_menu (test_interfaces.MenuTests.test_invalid_request_shows_error_and_returns_to_menu) ... ok
+test_place_order_after_confirming (test_interfaces.MenuTests.test_place_order_after_confirming) ... ok
+test_readme_first_quote_shows_ten_dollars_and_saves_nothing (test_interfaces.MenuTests.test_readme_first_quote_shows_ten_dollars_and_saves_nothing) ... ok
+test_negative_quantity_is_rejected (test_service.BoundaryTests.test_negative_quantity_is_rejected) ... ok
+test_order_with_no_items_is_rejected (test_service.BoundaryTests.test_order_with_no_items_is_rejected) ... ok
+test_ordering_exactly_the_available_stock_is_allowed (test_service.BoundaryTests.test_ordering_exactly_the_available_stock_is_allowed) ... ok
+test_ordering_more_than_available_stock_is_rejected (test_service.BoundaryTests.test_ordering_more_than_available_stock_is_rejected) ... ok
+test_student_discount_applies_at_exactly_5000_cents (test_service.BoundaryTests.test_student_discount_applies_at_exactly_5000_cents) ... ok
+test_zero_quantity_is_rejected (test_service.BoundaryTests.test_zero_quantity_is_rejected) ... ok
+test_cancelling_an_already_cancelled_order_does_not_restore_stock_again (test_service.InvalidInputTests.test_cancelling_an_already_cancelled_order_does_not_restore_stock_again) ... ok
+test_duplicate_lines_cannot_exceed_stock_together (test_service.InvalidInputTests.test_duplicate_lines_cannot_exceed_stock_together) ... ok
+test_unknown_order_id_is_rejected (test_service.InvalidInputTests.test_unknown_order_id_is_rejected) ... ok
+test_unknown_product_is_rejected (test_service.InvalidInputTests.test_unknown_product_is_rejected) ... ok
+test_cancel_order_restores_stock_and_keeps_history (test_service.NormalBehaviourTests.test_cancel_order_restores_stock_and_keeps_history) ... ok
+test_get_order_returns_the_matching_order (test_service.NormalBehaviourTests.test_get_order_returns_the_matching_order) ... ok
+test_place_order_saves_order_and_reduces_stock (test_service.NormalBehaviourTests.test_place_order_saves_order_and_reduces_stock) ... ok
+test_view_catalog_shows_products_prices_and_stock (test_service.NormalBehaviourTests.test_view_catalog_shows_products_prices_and_stock) ... ok
+test_order_ids_are_unique_sequential_and_not_reused (test_service.PreservedBehaviourTests.test_order_ids_are_unique_sequential_and_not_reused) ... ok
+test_orders_and_stock_survive_reopening (test_service.PreservedBehaviourTests.test_orders_and_stock_survive_reopening) ... ok
+test_quote_and_placed_order_agree (test_service.PreservedBehaviourTests.test_quote_and_placed_order_agree) ... ok
+test_quote_does_not_save_anything (test_service.PreservedBehaviourTests.test_quote_does_not_save_anything) ... ok
+test_cancel_order_restores_stock (test_smoke.OrderSmokeTests.test_cancel_order_restores_stock) ... ok
+test_order_can_be_reopened (test_smoke.OrderSmokeTests.test_order_can_be_reopened) ... ok
+test_regular_pickup_quote (test_smoke.OrderSmokeTests.test_regular_pickup_quote) ... ok
+test_student_delivery_quote (test_smoke.OrderSmokeTests.test_student_delivery_quote) ... ok
+
+======================================================================
+ERROR: test_cr_command_example_total_8400 (test_cr01_express.ExpressInterfaceTests.test_cr_command_example_total_8400)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/argparse.py", line 1965, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2216, in _parse_known_args
+    start_index = consume_optional(start_index)
+  File "/usr/local/lib/python3.13/argparse.py", line 2140, in consume_optional
+    take_action(action, args, option_string)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2026, in take_action
+    argument_values = self._get_values(action, argument_strings)
+  File "/usr/local/lib/python3.13/argparse.py", line 2547, in _get_values
+    self._check_value(action, value)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2606, in _check_value
+    raise ArgumentError(action, msg % args)
+argparse.ArgumentError: argument --fulfillment: invalid choice: 'express' (choose from 'pickup', 'delivery')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 65, in test_cr_command_example_total_8400
+    status = cli.main(["--data", str(self.path), "quote", "--customer", "student",
+                       "--fulfillment", "express", "--item", "hoodie:2"])
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/cli.py", line 45, in main
+    args = parser.parse_args(argv)
+  File "/usr/local/lib/python3.13/argparse.py", line 1926, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+                 ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 1936, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 1965, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2197, in _parse_known_args
+    positionals_end_index = consume_positionals(start_index)
+  File "/usr/local/lib/python3.13/argparse.py", line 2172, in consume_positionals
+    take_action(action, args)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2041, in take_action
+    action(self, namespace, argument_values, option_string)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 1286, in __call__
+    subnamespace, arg_strings = subparser.parse_known_args(arg_strings, None)
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 1936, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 1967, in _parse_known_args2
+    self.error(str(err))
+    ~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2686, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/argparse.py", line 2673, in exit
+    _sys.exit(status)
+    ~~~~~~~~~^^^^^^^^
+SystemExit: 2
+
+======================================================================
+ERROR: test_cr_example_regular_two_notebooks (test_cr01_express.ExpressTests.test_cr_example_regular_two_notebooks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 22, in test_cr_example_regular_two_notebooks
+    quote = self.service.quote("regular", [item("notebook", 2)], "express")
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 29, in quote
+    return self._price_request(state, customer_type, items, fulfillment)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 61, in _price_request
+    _validate_options(customer_type, fulfillment, items)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 86, in _validate_options
+    raise ValueError("Fulfillment must be pickup or delivery.")
+ValueError: Fulfillment must be pickup or delivery.
+
+======================================================================
+ERROR: test_cr_example_student_two_hoodies (test_cr01_express.ExpressTests.test_cr_example_student_two_hoodies)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 26, in test_cr_example_student_two_hoodies
+    quote = self.service.quote("student", [item("hoodie", 2)], "express")
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 29, in quote
+    return self._price_request(state, customer_type, items, fulfillment)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 61, in _price_request
+    _validate_options(customer_type, fulfillment, items)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 86, in _validate_options
+    raise ValueError("Fulfillment must be pickup or delivery.")
+ValueError: Fulfillment must be pickup or delivery.
+
+======================================================================
+ERROR: test_cr_example_three_hoodies_standard_vs_express (test_cr01_express.ExpressTests.test_cr_example_three_hoodies_standard_vs_express)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 31, in test_cr_example_three_hoodies_standard_vs_express
+    express = self.service.quote("regular", [item("hoodie", 3)], "express")
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 29, in quote
+    return self._price_request(state, customer_type, items, fulfillment)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 61, in _price_request
+    _validate_options(customer_type, fulfillment, items)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 86, in _validate_options
+    raise ValueError("Fulfillment must be pickup or delivery.")
+ValueError: Fulfillment must be pickup or delivery.
+
+======================================================================
+ERROR: test_discount_is_on_merchandise_not_express_fee (test_cr01_express.ExpressTests.test_discount_is_on_merchandise_not_express_fee)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 37, in test_discount_is_on_merchandise_not_express_fee
+    quote = self.service.quote("student", [item("bag", 2)], "express")
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 29, in quote
+    return self._price_request(state, customer_type, items, fulfillment)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 61, in _price_request
+    _validate_options(customer_type, fulfillment, items)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 86, in _validate_options
+    raise ValueError("Fulfillment must be pickup or delivery.")
+ValueError: Fulfillment must be pickup or delivery.
+
+======================================================================
+ERROR: test_express_order_kept_when_retrieved_reopened_and_cancelled (test_cr01_express.ExpressTests.test_express_order_kept_when_retrieved_reopened_and_cancelled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 41, in test_express_order_kept_when_retrieved_reopened_and_cancelled
+    quote = self.service.quote("student", [item("hoodie", 2)], "express")
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 29, in quote
+    return self._price_request(state, customer_type, items, fulfillment)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 61, in _price_request
+    _validate_options(customer_type, fulfillment, items)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/supplydesk/service.py", line 86, in _validate_options
+    raise ValueError("Fulfillment must be pickup or delivery.")
+ValueError: Fulfillment must be pickup or delivery.
+
+======================================================================
+FAIL: test_command_help_mentions_express (test_cr01_express.ExpressInterfaceTests.test_command_help_mentions_express)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 74, in test_command_help_mentions_express
+    self.assertIn("express", out.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'express' not found in 'usage: python3 -m unittest quote [-h] [--customer {regular,student}]\n                                 [--fulfillment {pickup,delivery}] --item ITEM\n\noptions:\n  -h, --help            show this help message and exit\n  --customer {regular,student}\n  --fulfillment {pickup,delivery}\n  --item ITEM\n'
+
+======================================================================
+FAIL: test_menu_prompt_offers_express_and_places_order (test_cr01_express.ExpressInterfaceTests.test_menu_prompt_offers_express_and_places_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/claude/repo/COMP3415-A2-Campus-Supply-Desk/tests/test_cr01_express.py", line 83, in test_menu_prompt_offers_express_and_places_order
+    self.assertTrue(any("express" in p and "Enter = pickup" in p for p in prompts))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 39 tests in 0.032s
+
+FAILED (failures=2, errors=6)
